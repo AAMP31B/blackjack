@@ -57,6 +57,9 @@ public String getWinner(){
 		winner = "Dealer wins";
 	if (playerWin)
 		winner = "Player wins";
+	//can add in additional conditions for broadcasting busts.
+	if (((!playerWin)&&(!dealerWin))&&((playerBust)&&(dealerBust)))
+		winner="Both player and dealer busted!";
 	return winner;
 }
 

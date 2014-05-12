@@ -12,27 +12,52 @@ public class Card {
 	
 	public Card(int x){
 		cardID=x;
-		getFQN();
+		rank = getRank();
+		suit = getSuit();
+		cardValue=getInitialValue();
+		
 	}
+	
+	public int getInitialValue(){
+		int rankMod = cardID % maxSuit;
+		
+		switch (rankMod)
+		{
+		case 0:	cardValue=11;	break;
+		case 1:	cardValue=2;	break;
+		case 2:	cardValue=3;	break;
+		case 3:	cardValue=4;	break;
+		case 4:	cardValue=5;	break;
+		case 5:	cardValue=6;	break;
+		case 6:	cardValue=7;	break;
+		case 7:	cardValue=8;	break;
+		case 8:	cardValue=9;	break;
+		case 9:	cardValue=10;	break;
+		case 10:cardValue=10;	break;
+		case 11:cardValue=10;	break;
+		case 12:cardValue=10;	break;
+		}
+		return cardValue;
+	}	
 	
 	public String getRank(){ //gets String rank and sets int cardValue
 		int rankMod = cardID % maxSuit;
 		String tempRank = null;
 		switch (rankMod)
 		{
-		case 0:		tempRank = "Ace";	cardValue=11;	break;
-		case 1:		tempRank = "Two";	cardValue=2;	break;
-		case 2:		tempRank = "Three";	cardValue=3;	break;
-		case 3:		tempRank = "Four";	cardValue=4;	break;
-		case 4:		tempRank = "Five";	cardValue=5;	break;
-		case 5:		tempRank = "Six";	cardValue=6;	break;
-		case 6:		tempRank = "Seven";	cardValue=7;	break;
-		case 7:		tempRank = "Eight";	cardValue=8;	break;
-		case 8:		tempRank = "Nine";	cardValue=9;	break;
-		case 9:		tempRank = "Ten";	cardValue=10;	break;
-		case 10:	tempRank = "Jack";	cardValue=10;	break;
-		case 11:	tempRank = "Queen";	cardValue=10;	break;
-		case 12:	tempRank = "King";	cardValue=10;	break;
+		case 0:		tempRank = "Ace";	break;
+		case 1:		tempRank = "Two";	break;
+		case 2:		tempRank = "Three";	break;
+		case 3:		tempRank = "Four";	break;
+		case 4:		tempRank = "Five";	break;
+		case 5:		tempRank = "Six";	break;
+		case 6:		tempRank = "Seven";	break;
+		case 7:		tempRank = "Eight";	break;
+		case 8:		tempRank = "Nine";	break;
+		case 9:		tempRank = "Ten";	break;
+		case 10:	tempRank = "Jack";	break;
+		case 11:	tempRank = "Queen";	break;
+		case 12:	tempRank = "King";	break;
 		}
 		return tempRank;
 	}
@@ -52,7 +77,7 @@ public class Card {
 		if (cardValue>0)
 			return cardValue;
 		else if (cardValue==0)
-			getRank();
+			cardValue = getInitialValue();
 			return cardValue;
 	}
 	public int changeAce(){
@@ -61,9 +86,8 @@ public class Card {
 		return cardValue;
 	}
 	public String getFQN(){
-		rank = getRank();
-		suit = getSuit();
-		cardFullName = rank+" of "+suit;
+		
+		cardFullName = rank+" of "+suit+" with a value of "+cardValue;
 		return cardFullName;
 	}
 }

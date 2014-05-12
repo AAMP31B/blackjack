@@ -120,11 +120,19 @@ private void announceWinner(Resolver resolve, Dealer dealer){
 		System.out.print("Do you wish to play again? Y or N: ");
 		Scanner input = new Scanner(System.in);
 		String answer = "";
-		answer =input.nextLine();
+		answer ="n";//input.nextLine();
 		if (answer.equalsIgnoreCase("y"))
+			{	
+			input.close();
 			new Game();
-		if (answer.equalsIgnoreCase("n"))
+			}
+		else if (answer.equalsIgnoreCase("n"))
+			{
+			input.close();
 			endGame();
+			}
+		else
+			PlayAgain();
 		
 		
 	}

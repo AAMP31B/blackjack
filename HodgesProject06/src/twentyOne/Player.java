@@ -33,7 +33,8 @@ public boolean AIorPlayer(){
 public void runLogic(){
 	checkAces();
 	hitMe();
-	checkBust();
+	bust =checkBust();
+	
 }
 public void addCardtoHand(Card x){
 	hand.add(x);
@@ -45,7 +46,7 @@ public void showHand(){
 public String stringHand(){
 	String sHand="";
 	for(int i=0;i<hand.size();i++)
-		sHand+=hand.get(i).getFQN()+", ";
+		sHand+=hand.get(i).getFQN()+", \n";
 	return sHand;
 }
 public Boolean checkBust(){
@@ -53,7 +54,7 @@ public Boolean checkBust(){
 	
 	if (check<=21)
 		bust=false;
-	else if ((check>21)&&(!acechecked))
+	else if ((check>21)&&(!acechecked)&&(ace))
 		{
 		checkAces();
 		hand.get(aceindex).changeAce();
@@ -92,6 +93,7 @@ public void addHit(Card x){
 		addCardtoHand(x);
 		//Request card from dealer or dealer checks if player wants to hit I suppose.
 		//Add card to hand
+		runLogic();
 	}
 	else if (!hit)
 	{
@@ -107,9 +109,10 @@ public void setHold(int hold) {
 	this.hold = hold;
 }
 public void requestHold(){
-	Scanner input = new Scanner(System.in);
-	System.out.print("Enter player hold limit: ");
-	hold = input.nextInt();
+	//Scanner input = new Scanner(System.in);
+	//System.out.print("Enter player hold limit: ");
+	//hold = input.nextInt();
+	hold = 17;
 	
 	
 }

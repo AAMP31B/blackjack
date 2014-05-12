@@ -8,7 +8,7 @@ public class Game {
 	private int numberOfPlayers;
 	private boolean exit=false;
 	ArrayList<Player> gamePlayers;
-	String winner;
+	String winner="";
 public Game(){
 	startGame();
 }
@@ -43,14 +43,14 @@ public Game(){
 		return players;
 	}
 	public Dealer cDealer(){
-		Dealer bob = new Dealer(17);
-		return bob;
+		Dealer dealer = new Dealer(17);
+		return dealer;
 		}
 	public void playGame(ArrayList<Player> players, Dealer dealer, int numPlayers){
 		initialDeal(players, dealer, numPlayers);
 		updatePlayers(players, dealer, numPlayers);
 		checkForWin(players,dealer,numPlayers);
-		while (winner.equals(null)){
+		while (winner.isEmpty()){
 			moreDeals(players, dealer, numPlayers);
 		}
 		PlayAgain();
@@ -118,6 +118,7 @@ private void announceWinner(Player player, Dealer dealer, int numPlayers){
 		System.out.print("Do you wish to play again? Y or N");
 		Scanner input = new Scanner(System.in);
 		String answer = input.next();
+		input.close();
 		if (answer.equalsIgnoreCase("n"))
 			exit=true;
 		

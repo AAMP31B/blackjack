@@ -15,7 +15,7 @@ public Game(){
 	
 	public void startGame(){
 		do{
-		gamePlayers = multiPlayer(getPlayers());	
+		gamePlayers = new ArrayList<Player>(multiPlayer(getPlayers()));	
 		Dealer gamedealer = cDealer();	
 		playGame(gamePlayers, gamedealer, numberOfPlayers);
 		}while(!exit);
@@ -80,22 +80,24 @@ public Game(){
 			{
 				for (int j=0;j<numPlayers;j++)
 				{
+					
 					Resolver resolve = new Resolver(dealer, players.get(j));
 					winner=resolve.getWinner();
-					announceWinner(resolve.returnPlayer(), dealer, numPlayers);
+					announceWinner(resolve, dealer);
 				}
 			}
 			else
 				break;
 		}
 	}
-private void announceWinner(Player player, Dealer dealer, int numPlayers){
+private void announceWinner(Resolver resolve, Dealer dealer){
 	System.out.println(winner);
 	System.out.println("The dealer had: "+ dealer.getHandCount()+" consisting of: ");
-	dealer.showHand();
+	System.out.println(dealer.stringHand());
 	System.out.println();
-	System.out.println("The player had: "+ player.getHandCount()+" consisting of: ");
-	player.showHand();
+	System.out.println("The player had: "+ resolve.returnPlayer().getHandCount()+" consisting of: ");
+	System.out.println(resolve.returnPlayer().stringHand());
+	
 }
 	public void initialDeal(ArrayList<Player> players, Dealer dealer, int numPlayers){
 		for (int i=0;i<numPlayers;i++)
@@ -115,12 +117,15 @@ private void announceWinner(Player player, Dealer dealer, int numPlayers){
 		dealer.runLogic();
 	}
 	public void PlayAgain(){
-		System.out.print("Do you wish to play again? Y or N");
+		System.out.print("Do you wish to play again? Y or N: ");
 		Scanner input = new Scanner(System.in);
-		String answer = input.next();
-		input.close();
+		String answer = "";
+		answer =input.nextLine();
+		if (answer.equalsIgnoreCase("y"))
+			new Game();
 		if (answer.equalsIgnoreCase("n"))
-			exit=true;
+			endGame();
+		
 		
 	}
 }

@@ -42,6 +42,12 @@ public void showHand(){
 	for (int i=0;i<hand.size();i++)
 		System.out.println(hand.get(i).getFQN());
 }
+public String stringHand(){
+	String sHand="";
+	for(int i=0;i<hand.size();i++)
+		sHand+=hand.get(i).getFQN()+", ";
+	return sHand;
+}
 public Boolean checkBust(){
 	int check = getHandCount();
 	
@@ -104,7 +110,8 @@ public void requestHold(){
 	Scanner input = new Scanner(System.in);
 	System.out.print("Enter player hold limit: ");
 	hold = input.nextInt();
-	input.close();
+	
+	
 }
 
 }

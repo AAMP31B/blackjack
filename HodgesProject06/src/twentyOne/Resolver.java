@@ -4,7 +4,7 @@ public class Resolver {
 
 private Boolean dealerWin;
 private Boolean playerWin;
-
+private Player storage;
 
 public Resolver(Dealer deal, Player play){
 	decideWinner(deal, play);//This method decides the winner when the class is constructed
@@ -27,6 +27,7 @@ public void decideWinner(Dealer deal, Player play)
 	{
 		setDealerWin(false);
 		setPlayerWin(true);
+		storage=play;
 	}
 	else if ((!deal.checkBust())&&!play.checkBust())
 		{
@@ -40,6 +41,7 @@ public void decideWinner(Dealer deal, Player play)
 			{
 				setDealerWin(false);
 				setPlayerWin(true);
+				storage = play;
 			}
 		}
 	}
@@ -69,5 +71,8 @@ public Boolean getPlayerWin() {
 public Boolean setPlayerWin(Boolean playerWin) {
 	this.playerWin = playerWin;
 	return playerWin;
+}
+public Player returnPlayer(){
+	return storage;
 }
 }

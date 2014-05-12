@@ -8,10 +8,10 @@ import java.util.*;
 public class Dealer extends Player{
 
 	private ArrayList<Integer> shuffledDeck = ShuffleDeck();
-	private int dealCounter=0;
+	private int dealCounter=setDealCounter(52);
 	public Dealer(int staylvl) {
 		super(staylvl);
-		setDealCounter(52);
+		
 		//setHold(17);//This could bypass the inherited constructor from player and just sets the dealer to stay on 17.
 		//Though this can also be ignored/removed if the dealer is always constructed with 17 from calling method.
 	}
@@ -39,8 +39,9 @@ public class Dealer extends Player{
 		return x;
 		
 	}
-	public void setDealCounter(int x){
+	public int setDealCounter(int x){
 		dealCounter=x;
+		return dealCounter;
 	}
 	private void decremDealCounter(){
 		dealCounter--;

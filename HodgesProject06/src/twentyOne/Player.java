@@ -30,12 +30,17 @@ public boolean AIorPlayer(){
 		AI=false;
 	return AI;
 }
+public void runLogic(){
+	checkAces();
+	hitMe();
+	checkBust();
+}
 public void addCardtoHand(Card x){
 	hand.add(x);
 }
 public void showHand(){
 	for (int i=0;i<hand.size();i++)
-		System.out.println(hand.get(i));
+		System.out.println(hand.get(i).getFQN());
 }
 public Boolean checkBust(){
 	int check = getHandCount();
